@@ -338,16 +338,19 @@
         $plainBody = "Verifica la tua email:\n$verify_link\nIl link scade tra 5 minuti.";
 
         $mail = new PHPMailer(true);
+        $config = require __DIR__ . '/config.php';
+        $mailCfg = $config['mail'];
+        
         try{
             $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com';
-            $mail->SMTPAuth   = true;
-            $mail->Username   = 'codewithfil@gmail.com';
-            $mail->Password   = 'gvui sujh rzol pybd' /*'lcwr lbcv qicg hltd'*/;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 587;
+            $mail->Host       = $mailCfg['host'];
+            $mail->SMTPAuth   = $mailCfg['smtp_auth'];
+            $mail->Username   = $mailCfg['username'];
+            $mail->Password   = $mailCfg['password'];
+            $mail->SMTPSecure = $mailCfg['encryption'];
+            $mail->Port       = $mailCfg['port'];
 
-            $mail->setFrom('noreply@didattix.it', 'Didattix');
+            $mail->setFrom($mailCfg['from_email'], $mailCfg['from_name']);
             $mail->addAddress($new_email);
             $mail->isHTML(true);
             $mail->Subject = $subject;
