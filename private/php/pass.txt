@@ -1,0 +1,4 @@
+root: 'U%PM13kL:{g5'
+didattix: 'wVZ5_79i,e^l'
+
+phpMyAdmin: '!alterra_php'
